@@ -16,7 +16,7 @@ const solc = require('solc');
 // compile the code
 const input = fs.readFileSync('./../contract/erc20Token.sol');
 const output = solc.compile(input.toString());
-const abi = JSON.parse(output.contracts[':TokenERC20'].interface);
+const abi = JSON.parse(output.contracts[':StandardToken'].interface);
 
 //------------------------------ init property ----------------------------
 
@@ -29,7 +29,6 @@ let tokenContractAddress = Config.approveModule.tokenContractAddress;
 
 //-------------------------------- contract --------------------------------
 let token = new web3.eth.Contract(abi, tokenContractAddress);
-
 let execute = require('./base/execute');
 
 function approveTransfer(approveAddress,amount,hashIdCall,successCall, errorCall) {
@@ -38,6 +37,7 @@ function approveTransfer(approveAddress,amount,hashIdCall,successCall, errorCall
 
     execute.executeFunction(tokenContractAddress,functionABI,hashIdCall,successCall,errorCall);
 }
+
 
 approveTransfer(airdropApproveAddress,amount,function (hashId) {
 
@@ -48,7 +48,7 @@ approveTransfer(airdropApproveAddress,amount,function (hashId) {
 },function (error) {
 
     console.log('execute approveTransfer error');
-});
+})
 
 
 

@@ -21,7 +21,7 @@ const abi = JSON.parse(output.contracts[':TokenAirDrop'].interface);
 
 const tokenInput = fs.readFileSync('./contract/erc20Token.sol');
 const tokenOutput = solc.compile(tokenInput.toString());
-const tokenAbi = JSON.parse(tokenOutput.contracts[':TokenERC20'].interface);
+const tokenAbi = JSON.parse(tokenOutput.contracts[':StandardToken'].interface);
 
 
 function privateKeyToAddress(privateKey) {

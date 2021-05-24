@@ -16,7 +16,7 @@ const solc = require('solc');
 // compile the code
 const tokenInput = fs.readFileSync('./../contract/erc20Token.sol');
 const tokenOutput = solc.compile(tokenInput.toString());
-const tokenAbi = JSON.parse(tokenOutput.contracts[':TokenERC20'].interface);
+const tokenAbi = JSON.parse(tokenOutput.contracts[':StandardToken'].interface);
 
 
 //-------------------------------- api --------------------------------
@@ -32,12 +32,14 @@ let transferToken = function(tokenContractAddress,toAddress,amount,hashIdCallBac
 
 function startTransferToken() {
 
-    let amount = '0.01';
+    let amount = '10';
     let obj = web3.utils.toWei(amount, 'ether');
 
-    let tokenAddress = 'your token address';
+    // token address
+    let tokenAddress = '0x1001328FA77e83825dED544A690344B542830864';
 
-    transferToken(tokenAddress,'your destination address',obj,function (hashId) {
+    // your destination address
+    transferToken(tokenAddress,'0x1452dE977811e0e76f2Aad8dB7B3C95FdB052E63',obj,function (hashId) {
         console.log('start transfer Token!,hashId->',hashId);
     },function (success) {
 
