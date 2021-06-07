@@ -61,7 +61,7 @@ contract ModoAirdrop {
     function claim() public returns (bool) {
         uint256 amount = rewards[msg.sender];
         require(amount > 1, "invalid amount");
-        require(block.number >= reveiveBlockNum, "not yet reveived");
+        require(block.number >= reveiveBlockNum, "not yed reveived");
         uint256 balance = token.balanceOf(address(owner));
         require(balance >= amount, "not enough balance");
         assert(token.transferFrom(owner, msg.sender, amount));
